@@ -1,0 +1,51 @@
+2)
+
+cd /var/www/html
+[gehad@localhost html]$ systemctl start httpd
+[gehad@localhost html]$ systemctl status httpd
+[gehad@localhost html]$ sudo chmod +x .htaccess
+[gehad@localhost html]$ sudo vi .htaccess
+Redirect "/page1.html" "/page2.html"
+ <Directory "/var/www/html/localhost/page1.html">
+sudo vi /etc/httpd/conf/httpd.conf
+ <Directory "/var/www/html/localhost">
+        # Allow .htaccess overrides
+        AllowOverride All
+
+        # Additional configuration directives as needed
+    </Directory>
+    
+[gehad@localhost httpd]$ sudo systemctl restart httpd
+
+
+3)
+[gehad@desktop-srmsdav ~]$ cd /var/www/html/
+
+mkdir directory
+cd directory
+vi .htaccess
+
+AuthType Basic
+AuthUserFile "/var/www/.htpasswd"
+AuthName "gehadmarawn"
+require valid-user
+:wq
+
+cd ..
+sudo htpasswd -c .htpasswd gehad
+sudo vi /etc/httpd/conf/httpd.conf
+
+4)
+
+[gehad@desktop-srmsdav ~]$ cd /var/www/html/
+[gehad@desktop-srmsdav html]$ sudo vi .htaccess
+[gehad@desktop-srmsdav html]$ sudo mkdir auth
+[gehad@desktop-srmsdav html]$ cd auth
+[gehad@desktop-srmsdav html]$ sudo vi downloadpdf.html
+AuthType Basic
+AuthUserFile "/var/www/.htpasswd"
+AuthName "enter"
+require valid-user
+[gehad@desktop-srmsdav auth]$ sudo htpasswd -c .htpasswd gehad
+
+

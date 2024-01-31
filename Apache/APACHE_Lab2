@@ -1,0 +1,76 @@
+1)
+
+sudo vi /etc/httpd/conf/httpd.conf
+
+#LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
+LoadModule mpm_worker_module modules/mod_mpm_worker.so
+<IfModule mpm_worker_module>
+    StartServers 2
+    MaxRequestWorkers 150
+    MinSpareThreads 25
+    MaxSpareThreads 75
+    ThreadsPerChild 25
+</IfModule>
+save
+systemctl restart httpd
+
+2)
+sudo httpd -M | grep rewrite_module
+rewrite_module (shared)
+
+3)
+a)
+RewriteEngine On
+RewriteCond %{QUERY_STRING} forbidden [NC]
+RewriteRule ^page$ - [F]
+
+b)
+RewriteEngine On
+RewriteCond %{QUERY_STRING} .
+RewriteRule ^ %{REQUEST_URI}? [L,R=301]
+
+c)
+RewriteEngine On
+RewriteCond %{QUERY_STRING} (^|&)var=([^&]+) [NC]
+RewriteRule ^page1$ /page2 [QSD,R=301]
+
+d)
+
+
+
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^var=([^&]+)&var=([^&]+)$
+RewriteRule ^path$ /path/%1/%2? [L]
+
+e)
+RewriteEngine On
+RewriteRule ^example/([^/]+)/([^/]+)$ /something.cgi?arg=$1&other=$2 [QSA,L]
+
+f)
+RewriteEngine On
+RewriteCond %{TIME_HOUR} >=18
+RewriteCond %{TIME_HOUR} <24
+RewriteRule ^$ /goodevening.html [L]
+
+RewriteCond %{TIME_HOUR} >=0
+RewriteCond %{TIME_HOUR} <18
+RewriteRule ^$ /goodmorning.html [L]
+
+
+4)
+sudo vi /etc/httpd/conf/httpd.conf
+<VirtualHost *:80>
+    ServerName os.iti.gov.eg
+    DocumentRoot /var/www/os-iti
+
+    <Directory /var/www/os-iti>
+        Options FollowSymLinks
+        AllowOverride None
+        Require all granted
+    </Directory>
+
+    RewriteEngine On
+    RewriteRule ^(.*)$ /local-directory/$1 [L]
+</VirtualHost>
+systemctl restart httpd
+
