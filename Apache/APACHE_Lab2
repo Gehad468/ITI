@@ -1,17 +1,11 @@
 1)
-
-sudo vi /etc/httpd/conf/httpd.conf
-
+[gehad@localhost ~]$  cd /etc/httpd
+[gehad@localhost httpd]$ ls
+conf  conf.d  conf.modules.d  logs  modules  run  state
+[gehad@localhost httpd]$ cd conf.modules.d
+[gehad@localhost conf.modules.d]$ vi 00-mpm.conf
 #LoadModule mpm_prefork_module modules/mod_mpm_prefork.so
 LoadModule mpm_worker_module modules/mod_mpm_worker.so
-<IfModule mpm_worker_module>
-    StartServers 2
-    MaxRequestWorkers 150
-    MinSpareThreads 25
-    MaxSpareThreads 75
-    ThreadsPerChild 25
-</IfModule>
-save
 systemctl restart httpd
 
 2)
@@ -20,12 +14,10 @@ rewrite_module (shared)
 
 3)
 a)
-RewriteEngine On
-RewriteCond %{QUERY_STRING} forbidden [NC]
-RewriteRule ^page$ - [F]
+RewriteCond "%{QUERY_STRING}" "forbidden"
+RewriteRule "^/page" - [f]
 
 b)
-RewriteEngine On
 RewriteCond %{QUERY_STRING} .
 RewriteRule ^ %{REQUEST_URI}? [L,R=301]
 
