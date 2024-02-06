@@ -1,0 +1,185 @@
+1)
+[gehad@localhost ~]$ systemctl list-unit-files --type=service
+
+
+2)
+[gehad@localhost ~]$ systemctl set-default multi-user.target
+Removed "/etc/systemd/system/default.target".
+Created symlink /etc/systemd/system/default.target → /usr/lib/systemd/system/multi-user.target.
+[gehad@localhost ~]$ reboot
+
+3)
+mail -s "hello root" root
+
+4)
+first way---------------------------------
+mail
+ U 19 gehad 2024-01-20 18:10   21/738   "hello root            "
+second way
+cat /var/spool/mail/root
+From: gehad <gehad@localhost.localdomain>
+Message-Id: <202401271219.40RCJHUZ009692@localhost.localdomain>
+Date: Sat, 27 Jan 2024 14:19:17 +0200
+To: root@localhost.localdomain
+Subject: hello root
+User-Agent: s-nail v14.9.22
+Status: O
+
+5)
+
+[gehad@localhost ~]$ systemctl stop postfix
+
+6)
+[gehad@localhost ~]$ mail -s "when i stoped postfix" root
+
+7)
+su -
+[gehad@localhost ~]$ mail
+▸N 46 gehad                 2024-01-27 14:54   18/790   "when i stoped postfix "
+[root@localhost ~]# cat /var/spool/mail/root
+does not exist
+
+8)
+
+[gehad@localhost ~]$ systemctl start postfix
+9)
+
+[gehad@localhost ~]$ mail -s "after starting postfix" root
+
+To: root
+Subject: after starting postfix
+
+after starting postfix
+^D
+-------
+(Preliminary) Envelope contains:
+To: root
+Subject: after starting postfix
+Send this message [yes/no, empty: recompose]? y
+[gehad@localhost ~]$ su -
+Password: 
+[root@localhost ~]# tail -10 /var/mail/root
+	for root; Sat, 27 Jan 2024 15:15:51 +0200
+From: gehad <gehad@localhost.localdomain>
+Message-Id: <202401271315.40RDFpOG029907@localhost.localdomain>
+Date: Sat, 27 Jan 2024 15:15:51 +0200
+To: root@localhost.localdomain
+Subject: after starting postfix
+User-Agent: s-nail v14.9.22
+
+after starting postfix
+
+10)
+sudo nano /etc/default/grub
+GRUB_TIMEOUT=20
+
+11)
+sudo nano /etc/default/grub
+GRUB_DEFAULT="Ubuntu".
+
+12)
+
+vi date.sh
+#!/bin/bash
+
+while true; do
+    current_time=$(date +"%H:%M")
+
+    if [[ "$current_time" > "08:00" && "$current_time" < "17:00" ]]; then
+        echo "System information at $current_time:"
+        echo "----------------------------------"
+        echo "Memory Usage:"
+        free -h
+        echo
+        echo "CPU Usage:"
+        top -bn1 | grep "Cpu(s)"
+        echo
+        echo "Disk Usage:"
+        df -h
+        echo
+        echo "----------------------------------"
+    fi
+
+    sleep 600 # Sleep for 10 minutes (600 seconds)
+done
+chmod +x date.sh
+./date.sh
+13)
+su -
+mail 
+n 
+p 
+d 
+q 
+
+13)
+ls > output.txt
+crontab -e
+0 8-17 * * * mail -s "Cron Job Output" gehad@gmail.com < ~/output.txt
+
+14)
+crontab -e
+MAILTO=mgehad@gmail.com
+
+15)
+mail
+Use n to view the next email.
+Use p to view the previous email.
+Use d to delete an email.
+Use q to quit the mail interface.
+
+
+17)
+gnuplot
+bash: gnuplot: command not found...
+Packages providing this file are:
+'gnuplot'
+'gnuplot-minimal'
+
+18)
+ yum search plotting
+
+19)
+yum info gnuplot
+
+20)
+sudo yum install gnuplot
+
+21)
+sudo yum remove gnuplot --assumeno
+
+22)
+rpm -qa
+
+23)
+rpm -ql initscripts
+
+24)
+rpm -qi bash
+
+25)
+rpm -V pam
+
+26)
+rpm -qa | grep gnome
+
+27)
+sudo yum install name
+
+28)
+sudo yum install krita
+
+29)
+sudo mkdir /media/iso
+sudo mount -o loop /path/to/he.iso /media/iso
+[cdrom]
+name=RHEL CD
+baseurl=file:
+gpgcheck=1
+gpgkey=file:
+
+sudo umount /media/iso
+
+30)
+sudo yum makecache
+
