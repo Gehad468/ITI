@@ -1,0 +1,30 @@
+Inheritance is a required feature of every object-oriented programming language. This means that Python supports inheritance and it’s one of the few languages that supports multiple inheritance.
+In multiple inheritance, the features of all the base classes are inherited into the derived class.
+
+Syntax
+Class Base1:
+	Body of the class
+
+Class Base2:
+	Body of the class
+
+Class Base3:
+	Body of the class
+.
+.
+.
+Class BaseN:
+	Body of the class
+
+
+Class Derived(Base1, Base2, Base3, … , BaseN):
+	Body of the class
+The Derived class inherits from both Base1, Base2 and Base3classes.
+
+/////////////////////////////////////////////
+polymorphism and overriding
+Polymorphism is a term used in Python to refer to a generic function name that may be used for several kinds. This notion is commonly used in Python’s object-oriented programming. As is the case with other programming languages like as Java and C++, polymorphism is implemented in Python for a variety of purposes, most notably Duck Typing, Operator and Method overloading, and Method overriding
+Python does indeed support polymorphism, which is one of the fundamental principles of object-oriented programming (OOP). Polymorphism allows objects of different classes to be treated as objects of a common superclass, enabling flexibility and reusability in code.
+
+Python achieves polymorphism through method overriding and duck typing. Method overriding allows subclasses to provide a specific implementation of a method that is already defined in its superclass. Duck typing, on the other hand, allows objects to be passed to functions or methods based on the behaviors they exhibit, rather than their actual type or class.
+
