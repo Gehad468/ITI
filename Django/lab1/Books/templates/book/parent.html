@@ -1,0 +1,37 @@
+{%load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{% block title %} Parent {% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>Books</h1>
+
+    <table border="2" width="100%">
+        <tr><td><img src="{% static 'imgs/w.jpg' %}" alt=""></td></tr>
+        <tr>
+            <td colspan="9">Header</td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <h1>Menu</h1>
+                
+                <a href="{% url 'book_list'%}">Details</a>
+                <a href="">Auther</a>
+                <a href="{% url 'book_add'%}">Add</a>
+            </td>
+            <td colspan="7">{% block content %}
+                
+                {% endblock %}</td>
+        </tr>
+        <tr>
+            <td colspan="9">Footer</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{% extends 'book/parent.html' %}
+
+{% block title %}List - Title{% endblock %}
+{% block content %}List - content
+<!-- {{books}} -->
+<table border="1" width="100%" >
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>id</th>
+            <th>Verdion</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{book.title}}</td>
+            <td>{{book.id}}</td>
+            <td>{{book.version}}</td>
+            <td>
+                <a href="/book/Show/{{book.id}}">Details</a>
+                <a href="{% url 'book_update' book.id %}">Update</a>
+                <a href="{% url 'book_delete' book.id %}">Delete</a>
+            </td>
+         
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
