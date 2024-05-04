@@ -1,0 +1,19 @@
+{% extends 'book/parent.html' %}
+
+{% block title %}Add - Title{% endblock %}
+{% block content %}add 
+<form method="post" enctype="multipart/form-data">
+    {%csrf_token%}
+    <!-- <input type="text" name="title" required> -->
+    <!-- <input type="number" name="version">
+    <input type="file" name="image">
+    <select >
+        <option value="">auth1</option>
+    </select> -->
+    {{form}}
+    <input type="submit" value="add">
+</form>
+<div style="color:brown">
+    {{msg}}
+</div>
+{% endblock %}
